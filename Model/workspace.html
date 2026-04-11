@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workspace | Scriptly</title>
+  <link rel="stylesheet" href="style3.css">
+
+  <link rel="stylesheet" href="style.css">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <div class="logo">✦ Scriptly</div>
+    <a href="index.html">Home</a>
+  </header>
+
+  <div class="workspace-container">
+    <h2>🎤 Speech to Text Workspace</h2>
+    <p style="text-align:center; margin-bottom: 1rem;">
+      Record your voice, convert it into text, and instantly generate summaries & keywords.
+    </p>
+
+    <!-- Recording buttons -->
+    <div class="btn-group">
+      <button class="btn-primary" onclick="startRecording()">🎙 Start Recording</button>
+      <button class="btn-danger" onclick="stopRecording()">⏹ Stop</button>
+    </div>
+
+    <!-- Text area -->
+    <textarea id="voiceText" placeholder="Your transcribed text will appear here..."></textarea>
+
+    <!-- Processing buttons -->
+    <div class="btn-group">
+      <button class="btn-secondary" onclick="generateSummary()">📄 Generate Summary</button>
+      <button class="btn-primary" onclick="extractKeywords()">🔑 Extract Key Points</button>
+      <button class="btn-primary" onclick="saveNote()">💾 Save Note</button>
+    </div>
+
+    <!-- Outputs -->
+    <div class="output-section">
+      <h3>📄 Summary</h3>
+      <div class="output-box" id="summaryText">Summary will appear here...</div>
+    </div>
+
+    <div class="output-section">
+      <h3>🔑 Key Points</h3>
+      <div class="output-box" id="keywordsText">Keywords will appear here...</div>
+    </div>
+  </div>
+
+
+  <script src="workspace.js"></script>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-branding">
+        <img class="footer-logo" src="Images/LOGO.png" alt="Scriptly Logo" />
+        <div class="socials">
+          <a href="https://github.com/Anant-27" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" />
+          </a>
+        </div>
+        <p class="tagline">Turn your speech into smart, structured notes.</p>
+        <p class="copyright-inline">© 2025 Scriptly</p>
+        <div class="trust">🔒 Your data is encrypted & never stored without permission.<br/>✅ No ads, no tracking.</div>
+      </div>
+
+      <div class="footer-features">
+        <h4>Scriptly Core Features</h4>
+        <ul>
+          <li>Real-time Speech-to-Text</li>
+          <li>Smart Note Formatting</li>
+          <li>Auto Punctuation</li>
+          <li>Multi-language Support</li>
+          <li>Export Notes (PDF, TXT, DOCX)</li>
+          <li>Note History & Cloud Sync</li>
+        </ul>
+      </div>
+
+      <div class="footer-trust">
+        <h4>Trust</h4>
+        <ul>
+          <li>Encrypted by default</li>
+          <li>No storage without permission</li>
+          <li>No ads • No tracking</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">Built with care — © 2025 Scriptly</div>
+  </footer>
+
+  </script>
+  <script>window.SCRIPTLY_BACKEND = 'http://localhost:5000';</script>
+  <script src="chat.js"></script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page Login</title>
+  <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1><b>Welcome to Scriptly</b></h1>
+        <p><b>“From speech to smart notes — fast, accurate, effortless.”</b></p>
+    </header>
+    <div class="auth-container">
+        <h2><b>Login</b></h2>
+        <input type="text" id="Email" placeholder="Enter your email">
+        <input type="password" id="password" placeholder="Enter your password">
+        <button id="loginBtn">Login</button>
+        <div class="message" id="message"></div>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scriptly Login</title>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <header>
+        <h1><b>Welcome to Scriptly</b></h1>
+        <p><b>“From speech to smart notes — fast, accurate, effortless.”</b></p>
+    </header>
+
+    <div class="auth-container">
+        <h2><b>Login</b></h2>
+        <input type="email" id="email" placeholder="Enter your email">
+        <input type="password" id="password" placeholder="Enter your password">
+        <button id="loginBtn">Login</button>
+        <div class="message" id="message"></div>
+        <p style="margin-top: 15px; color: #ccc; font-size: 0.9rem;">Don't have an account? <a href="register.html" style="color: #a67aff;">Register here</a></p>
+    </div>
+
+    <!-- FOOTER -->
+    <!-- <footer>
+        <div class="footer-row">
+            <div class="footer-content">
+                <p>Turn Your Conversations into Notes — Anytime, Anywhere.</p>
+                <div class="socials">
+                    <a href="https://github.com/Anant-27" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#howitworks">How It Works</a></li>
+                    <li><a href="index.html#benefits">Benefits</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">© 2025 Scriptly. All rights reserved.</div>
+    </footer> -->
+
+    
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', async () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('message');
+
+            // Clear previous message
+            messageDiv.textContent = '';
+
+            if(!email || !password){
+                messageDiv.textContent = "Please enter email and password.";
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/api/users/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                    credentials: 'include'
+                });
+
+                const data = await response.json();
+
+                if(data.error){
+                    messageDiv.textContent = "Error: " + data.error;
+                } else {
+                    messageDiv.textContent = "Login successful!";
+                    // Store user ID in localStorage for easy access
+                    if(data.user && data.user.id) {
+                        localStorage.setItem('userId', data.user.id);
+                    }
+                    setTimeout(() => {
+                        window.location.href = "workspace.html";
+                    }, 500);
+                }
+            } catch(err){
+                messageDiv.textContent = "Error connecting to server.";
+                console.error(err);
+            }
+        });
+    </script>
+    <!-- <script>window.SCRIPTLY_BACKEND = 'http://localhost:5000';</script> -->
+    <!-- <script src="chat.js"></script> -->
+
+</body>
+</html>
